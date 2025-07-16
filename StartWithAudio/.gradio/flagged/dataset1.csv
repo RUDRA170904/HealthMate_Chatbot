@@ -1,0 +1,4 @@
+audio_filepath,image_filepath,Speech to Text,Doctor's Response,output 2,timestamp
+.gradio\flagged\audio_filepath\b09b3d1a305b14d447a9\audio.wav,.gradio\flagged\image_filepath\ef694bc2155044273293\acne.jpeg," Hello doctor, I have something happened on my face. Can you tell me what happened? And can you also provide some remedies that can I perform at home? Please.","With what I see, I think you might be experiencing some acne-like issues on your cheeks and forehead, skin redness and inflammation. 
+
+Here are a few suggestions, first always always keep your skin clean by washing this twice with soap and water. Secondly ensure that you keep away any smoking habits and thirdly incorporate some anti-inflammatory food such as fish into your diet. If skin inflammation and redness worsens, it may be necessary for you to consult a professional Dermatologist.",,2025-02-04 16:25:46.927940

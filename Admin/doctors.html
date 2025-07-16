@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Manage Doctors</title>
+    <link rel="stylesheet" href="../css/admin.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Manage Doctors</h1>
+      <form id="doctorForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required /><br />
+        <label for="specialization">Specialization:</label>
+        <input
+          type="text"
+          id="specialization"
+          name="specialization"
+          required
+        /><br />
+        <button type="submit">Add Doctor</button>
+      </form>
+      <h2>Doctors List</h2>
+      <table id="doctorsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Doctors will be loaded here -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      $(document).ready(function () {
+        loadDoctors();
+
+        $("#doctorForm").on("submit", function (e) {
+          e.preventDefault();
+          var formData = {
+            name: $("#name").val(),
+            specialization: $("#specialization").val(),
+          };
+          $.ajax({
+            url: "../api/doctors.php",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            success: function (data) {
+              alert("Doctor added");
+              loadDoctors();
+            },
+          });
+        });
+
+        function loadDoctors() {
+          $.ajax({
+            url: "../api/doctors.php",
+            method: "GET",
+            success: function (data) {
+              var doctors = JSON.parse(data);
+              var rows = "";
+              $.each(doctors, function (index, doctor) {
+                rows += "<tr>";
+                rows += "<td>" + doctor.id + "</td>";
+                rows += "<td>" + doctor.name + "</td>";
+                rows += "<td>" + doctor.specialization + "</td>";
+                rows +=
+                  '<td><button class="delete-btn" onclick="deleteDoctor(' +
+                  doctor.id +
+                  ')">Delete</button></td>';
+                rows += "</tr>";
+              });
+              $("#doctorsTable tbody").html(rows);
+            },
+          });
+        }
+
+        window.deleteDoctor = function (id) {
+          if (confirm("Are you sure you want to delete this doctor?")) {
+            $.ajax({
+              url: "../api/doctors.php?id=" + id,
+              method: "DELETE",
+              success: function (data) {
+                alert("Doctor deleted");
+                loadDoctors();
+              },
+            });
+          }
+        };
+      });
+    </script>
+  </body>
+</html>

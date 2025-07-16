@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normal Chatbot</title>
+</head>
+<body>
+    <h1>Normal Chatbot</h1>
+    <form method="post">
+        <label for="query">Write Your Query:</label>
+        <input type="text" id="query" name="query" value="{{ query }}" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if result %}
+    <h2>Result:</h2>
+    <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Medication Management</header>
+    <div class="container">
+        <h2>Manage Your Medications</h2>
+        <form id="medication-form" method="POST" action="medicationmanagement.php">
+            <div class="form-group">
+                <label for="medicine-name">Medicine Name:</label>
+                <input type="text" id="medicine-name" name="medicine-name" placeholder="Enter medicine name" required>
+            </div>
+            <div class="form-group">
+                <label for="medicine-times">How many times do you take the medicine?</label>
+                <select id="medicine-times" name="medicine-times" onchange="adjustFields()" required>
+                    <option value="1">1 time</option>
+                    <option value="2">2 times</option>
+                    <option value="3">3 times</option>
+                </select>
+            </div>
+            <div id="alarm-times-container">
+                <div class="form-group">
+                    <label for="alarm-time-1">Time for taking medicine (1st):</label>
+                    <input type="time" id="alarm-time-1" name="alarm-time-1" required>
+                </div>
+            </div>
+            <button type="submit">Save Medication</button>
+        </form>
+    </div>
+    <script>
+        function adjustFields() {
+            const medicineTimes = document.getElementById("medicine-times").value;
+            const container = document.getElementById("alarm-times-container");
+            container.innerHTML = '';
+            for (let i = 1; i <= medicineTimes; i++) {
+                const field = document.createElement("div");
+                field.classList.add("form-group");
+                field.innerHTML = `
+                    <label for="alarm-time-${i}">Time for taking medicine (${i}):</label>
+                    <input type="time" id="alarm-time-${i}" name="alarm-time-${i}" required>
+                `;
+                container.appendChild(field);
+            }
+        }
+    </script>
+    <div class="footer">&copy; 2025 Medication Management System</div>
+</body>
+</html>

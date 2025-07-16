@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management</title>
+    <link rel="stylesheet" href="../css/appointment_management.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Appointment Management</h1>
+    </header>
+    <div class="container">
+        <form id="appointment-form">
+            <label for="appointment-date">Select appointment date:</label>
+            <input type="date" id="appointment-date" name="appointment-date" required>
+            <button type="submit">Schedule</button>
+        </form>
+        <div id="appointment-result" style="display:none;">
+            <p id="appointment-text"></p>
+        </div>
+    </div>
+    <script src="../js/appointment_management.js" defer></script>
+</body>
+</html>

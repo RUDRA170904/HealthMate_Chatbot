@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Education</title>
+    <link rel="stylesheet" href="../css/health_education.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Health Education</h1>
+    </header>
+    <div class="container">
+        <form id="health-education-form">
+            <label for="health-topic">Enter health topic:</label>
+            <input type="text" id="health-topic" name="health-topic" required>
+            <button type="submit">Get Information</button>
+        </form>
+        <div id="health-education-result" style="display:none;">
+            <p id="health-education-text"></p>
+        </div>
+    </div>
+    <script src="../js/health_education.js" defer></script>
+</body>
+</html>
